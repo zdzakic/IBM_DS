@@ -66,14 +66,22 @@ def get_pie_chart(entered_site):
     filtered_df = spacex_df
     if entered_site == 'ALL':
         fig = px.pie(filtered_df, values='class',
-                     names='pie chart names',
-                     title='title')
+                     names='Launch Site',
+                     title='Total  Success Rate by Site')
         return fig
     else:
         # return the outcomes piechart for a selected site
+        filt_site = filtered_df[filtered_df['Launch Site'] == entered_site]
+        site_name = 'Total  Success Rate for site '  + str(entered_site)
+        fig = px.pie(filt_site, values='Flight Number',
+                     names='class',
+                     title=site_name)
+        return fig
         # TASK 4:
         # Add a callback function for `site-dropdown` and `payload-slider` as inputs, `success-payload-scatter-chart` as output
 
         # Run the app
+        pass
+
 if __name__ == '__main__':
     app.run_server()
